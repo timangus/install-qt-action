@@ -80,8 +80,8 @@ const isAutodesktopSupported = async (): Promise<boolean> => {
 };
 
 class Inputs {
-  readonly host: "windows" | "mac" | "linux";
-  readonly target: "desktop" | "android" | "ios";
+  readonly host: "windows" | "mac" | "linux" | "all_os";
+  readonly target: "desktop" | "android" | "ios" | "wasm";
   readonly version: string;
   readonly arch: string;
   readonly dir: string;
@@ -132,19 +132,19 @@ class Inputs {
       }
     } else {
       // Make sure host is one of the allowed values
-      if (host === "windows" || host === "mac" || host === "linux") {
+      if (host === "windows" || host === "mac" || host === "linux" || host === "all_os") {
         this.host = host;
       } else {
-        throw TypeError(`host: "${host}" is not one of "windows" | "mac" | "linux"`);
+        throw TypeError(`host: "${host}" is not one of "windows" | "mac" | "linux" | "all_os"`);
       }
     }
 
     const target = core.getInput("target");
     // Make sure target is one of the allowed values
-    if (target === "desktop" || target === "android" || target === "ios") {
+    if (target === "desktop" || target === "android" || target === "ios" || target === "wasm") {
       this.target = target;
     } else {
-      throw TypeError(`target: "${target}" is not one of "desktop" | "android" | "ios"`);
+      throw TypeError(`target: "${target}" is not one of "desktop" | "android" | "ios" | "wasm"`);
     }
 
     // An attempt to sanitize non-straightforward version number input
