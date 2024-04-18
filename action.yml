@@ -90,7 +90,7 @@ runs:
       python-version: '3.6.x - 3.11.x'
 
   - name: Setup and run aqtinstall
-    uses: ./action
+    uses: timangus/install-qt-action/action@deployed
     with:
       dir: ${{ inputs.dir }}
       version: ${{ inputs.version }}
